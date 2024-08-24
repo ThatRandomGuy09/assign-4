@@ -214,7 +214,7 @@ body {
 }
 
 .winner .choice::after {
-  box-shadow: 0 0 0 40px #3b6720, 0 0 0 70px #1da82b, 0 0 0 90px #2e9a25;
+  box-shadow: 0 0 0 40px #3b6720, 0 0 0 80px #1da82b, 0 0 0 120px #2e9a25;
   animation: winner 1s ease forwards;
 }
 
