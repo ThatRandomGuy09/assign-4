@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  background: #89c15e;
+  min-height: 100vh;
+  text-transform: uppercase;
+  color: var(--light-text);
+}
+
+.hurray-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  margin: 0;
+}
+
+.hurray-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4rem; /* Increased padding at the top */
+}
+
+.top-image {
+  margin-bottom: 1rem; /* Space below the top image */
+}
+
+.hurray-image {
+  max-width: 80%;
+  height: auto;
+  margin-bottom: 1.5rem; /* Space between images */
+}
+
+.hurray-heading {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.hurray-subheading {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
+.play-again {
+  background: #fff;
+  color: #000;
+  border: 2px solid #000; /* Added border for better visibility */
+  border-radius: 0.6rem;
+  padding: 0.6rem 3.5rem;
+  font-size: 1.3rem;
+  cursor: pointer;
+  text-transform: uppercase;
+}
