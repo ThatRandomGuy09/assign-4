@@ -29,17 +29,17 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 4rem; /* Increased padding at the top */
+  padding-top: 4rem;
 }
 
 .top-image {
-  margin-bottom: 1rem; /* Space below the top image */
+  margin-bottom: 1rem;
 }
 
 .hurray-image {
   max-width: 80%;
   height: auto;
-  margin-bottom: 1.5rem; /* Space between images */
+  margin-bottom: 1.5rem;
 }
 
 .hurray-heading {
@@ -57,7 +57,7 @@ body {
 .play-again {
   background: #fff;
   color: #000;
-  border: 2px solid #000; /* Added border for better visibility */
+  border: 2px solid #000;
   border-radius: 0.6rem;
   padding: 0.6rem 3.5rem;
   font-size: 1.3rem;
