@@ -2,24 +2,14 @@ setTimeout(() => {
   document.body.classList.remove("preload");
 }, 500);
 
-// DOM Elements
 const btnRules = document.querySelector(".rules-btn");
 const btnClose = document.querySelector(".close-btn");
 const modalRules = document.querySelector(".modal");
 
 const CHOICES = [
-  {
-    name: "paper",
-    beats: "rock",
-  },
-  {
-    name: "scissors",
-    beats: "paper",
-  },
-  {
-    name: "rock",
-    beats: "scissors",
-  },
+  { name: "paper", beats: "rock" },
+  { name: "scissors", beats: "paper" },
+  { name: "rock", beats: "scissors" },
 ];
 const choiceButtons = document.querySelectorAll(".choice-btn");
 const gameDiv = document.querySelector(".game");
@@ -30,14 +20,16 @@ const resultWinner = document.querySelector(".results__winner");
 const resultText = document.querySelector(".results__text");
 
 const playAgainBtn = document.querySelector(".play-again");
+const nextBtn = document.querySelector(".next-btn");
 
-const scoreNumber = document.querySelector(".score__number");
+const userScoreElement = document.getElementById("user-score");
+const computerScoreElement = document.getElementById("computer-score");
 
-// Load score from localStorage
-let score = parseInt(localStorage.getItem("score")) || 0;
-scoreNumber.innerText = score;
+let userScore = parseInt(localStorage.getItem("userScore")) || 0;
+let computerScore = parseInt(localStorage.getItem("computerScore")) || 0;
 
-// Game Logic
+updateScores();
+
 choiceButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const choiceName = button.dataset.choice;
@@ -47,9 +39,9 @@ choiceButtons.forEach((button) => {
 });
 
 function choose(choice) {
-  const aichoice = aiChoose();
-  displayResults([choice, aichoice]);
-  displayWinner([choice, aichoice]);
+  const aiChoice = aiChoose();
+  displayResults([choice, aiChoice]);
+  displayWinner([choice, aiChoice]);
 }
 
 function aiChoose() {
@@ -80,16 +72,19 @@ function displayWinner(results) {
     if (userWins) {
       resultText.innerText = "you win";
       resultDivs[0].classList.toggle("winner");
-      keepScore(1);
+      userScore++;
     } else if (aiWins) {
       resultText.innerText = "you lose";
       resultDivs[1].classList.toggle("winner");
-      keepScore(-1);
+      computerScore++;
     } else {
       resultText.innerText = "draw";
     }
+
+    updateScores();
     resultWinner.classList.toggle("hidden");
     resultsDiv.classList.toggle("show-winner");
+    checkForGameEnd();
   }, 1000);
 }
 
@@ -97,15 +92,26 @@ function isWinner(results) {
   return results[0].beats === results[1].name;
 }
 
-function keepScore(point) {
-  score += point;
-  scoreNumber.innerText = score;
-  // Save the score to localStorage
-  localStorage.setItem("score", score);
+function updateScores() {
+  localStorage.setItem("userScore", userScore);
+  localStorage.setItem("computerScore", computerScore);
+  userScoreElement.innerText = userScore;
+  computerScoreElement.innerText = computerScore;
 }
 
-// Play Again
+function checkForGameEnd() {
+  if (userScore >= 15 || computerScore >= 15) {
+    nextBtn.classList.remove("hidden");
+  }
+}
+
 playAgainBtn.addEventListener("click", () => {
+  if (userScore >= 15 || computerScore >= 15) {
+    userScore = 0;
+    computerScore = 0;
+    nextBtn.classList.add("hidden");
+  }
+
   gameDiv.classList.toggle("hidden");
   resultsDiv.classList.toggle("hidden");
 
@@ -117,11 +123,20 @@ playAgainBtn.addEventListener("click", () => {
   resultText.innerText = "";
   resultWinner.classList.toggle("hidden");
   resultsDiv.classList.toggle("show-winner");
+  updateScores();
 });
 
 btnRules.addEventListener("click", () => {
   modalRules.classList.toggle("show-modal");
 });
+
 btnClose.addEventListener("click", () => {
   modalRules.classList.toggle("show-modal");
+});
+
+window.addEventListener("beforeunload", () => {
+  if (userScore >= 15 || computerScore >= 15) {
+    localStorage.removeItem("userScore");
+    localStorage.removeItem("computerScore");
+  }
 });

@@ -383,3 +383,38 @@ body {
 .hidden {
   display: none;
 }
+
+/* Existing styles */
+
+.next-btn {
+  position: absolute;
+  bottom: 2rem;
+  right: 14rem; /* Adjusted to position next to the rules button */
+  background: none;
+  outline: none;
+  border: 2px solid var(--outline);
+  border-radius: 0.6rem;
+  color: #ffffff;
+  padding: 0.6rem 2.5rem;
+  font-family: inherit;
+  text-transform: inherit;
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+.next-btn:focus {
+  border: 2px solid #fff;
+}
+
+.hidden {
+  display: none;
+}
+
+.show-modal {
+  display: flex;
+}
+
+.show-modal {
+  opacity: 1;
+  pointer-events: initial;
+}

@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link
       rel="icon"
       type="image/png"
@@ -12,7 +11,6 @@
     />
     <link rel="stylesheet" href="styles.css" />
     <script src="app.js" defer></script>
-
     <title>Rock, Paper, Scissors</title>
   </head>
   <body class="preload">
@@ -20,8 +18,12 @@
       <header class="header">
         <img src="./images/logo.svg" alt="logo" class="logo" />
         <div class="score">
+          <div class="score__title">Computer score</div>
+          <div class="score__number" id="computer-score">0</div>
+        </div>
+        <div class="score">
           <div class="score__title">score</div>
-          <div class="score__number">0</div>
+          <div class="score__number" id="user-score">0</div>
         </div>
       </header>
       <section class="game">
@@ -55,6 +57,7 @@
     </section>
 
     <button class="rules-btn" tabindex="1">rules</button>
+    <button class="next-btn hidden" tabindex="2">next</button>
 
     <div class="modal">
       <div class="modal__container">
@@ -64,7 +67,6 @@
             <span class="close-icon">✕</span>
           </button>
         </header>
-
         <ul class="rules-list">
           <li class="flex items-start">
             <span class="bullet"></span> Rock beats scissors, scissors beat
