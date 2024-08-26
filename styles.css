@@ -70,7 +70,8 @@ body {
 .score__title {
   font-size: 1.1rem;
   letter-spacing: 0.1em;
-  color: var(--score-text);
+  color: #656565;
+  text-align: center;
 }
 
 .score__number {
@@ -158,13 +159,13 @@ body {
 }
 
 .choice-btn[data-choice="paper"] {
-  grid-area: paper;
+  grid-area: rock;
 }
 .choice-btn[data-choice="scissors"] {
   grid-area: scissors;
 }
 .choice-btn[data-choice="rock"] {
-  grid-area: rock;
+  grid-area: paper;
 }
 
 /* Results */
