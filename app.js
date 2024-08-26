@@ -25,8 +25,16 @@ const nextBtn = document.querySelector(".next-btn");
 const userScoreElement = document.getElementById("user-score");
 const computerScoreElement = document.getElementById("computer-score");
 
-let userScore = parseInt(localStorage.getItem("userScore")) || 0;
-let computerScore = parseInt(localStorage.getItem("computerScore")) || 0;
+const isNewSession = !localStorage.getItem("sessionStarted");
+
+let userScore = parseInt(sessionStorage.getItem("userScore")) || 0;
+let computerScore = parseInt(sessionStorage.getItem("computerScore")) || 0;
+
+if (isNewSession) {
+  localStorage.setItem("sessionStarted", "true");
+  sessionStorage.removeItem("userScore");
+  sessionStorage.removeItem("computerScore");
+}
 
 updateScores();
 
@@ -93,8 +101,8 @@ function isWinner(results) {
 }
 
 function updateScores() {
-  localStorage.setItem("userScore", userScore);
-  localStorage.setItem("computerScore", computerScore);
+  sessionStorage.setItem("userScore", userScore);
+  sessionStorage.setItem("computerScore", computerScore);
   userScoreElement.innerText = userScore;
   computerScoreElement.innerText = computerScore;
 }
@@ -136,10 +144,12 @@ btnClose.addEventListener("click", () => {
 
 window.addEventListener("beforeunload", () => {
   if (userScore >= 15 || computerScore >= 15) {
-    localStorage.removeItem("userScore");
-    localStorage.removeItem("computerScore");
+    sessionStorage.removeItem("userScore");
+    sessionStorage.removeItem("computerScore");
+    localStorage.removeItem("sessionStarted");
   }
 });
+
 nextBtn.addEventListener("click", () => {
   window.location.href = "hurray.html";
 });
