@@ -140,3 +140,6 @@ window.addEventListener("beforeunload", () => {
     localStorage.removeItem("computerScore");
   }
 });
+nextBtn.addEventListener("click", () => {
+  window.location.href = "hurray.html";
+});
